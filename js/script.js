@@ -27,6 +27,7 @@ const annotationTimestamp = 14; // Replace with the desired timestamp in seconds
 let currentTime = 0;
 
 function onPlayerStateChange(event) {
+    annotationContainer.style.display = 'block'; // Show annotation
     currentTime = Math.round(player.getCurrentTime()); // Round to nearest second
     if (event.data == YT.PlayerState.PLAYING) {
       // Update timestamp in one-second increments while playing
@@ -39,8 +40,9 @@ function onPlayerStateChange(event) {
   }
   
   function checkAndUpdateTimestamp() {
-      annotationContainer.style.display = 'block'; // Show annotation
-      updateTimestamp();
+    currentTime = Math.round(player.getCurrentTime());
+    const currentTimeParagraph = annotationContainer.querySelector('p');
+    currentTimeParagraph.textContent = `Current Timestamp: ${currentTime} seconds`;
   }
   
   function updateTimestamp() {
