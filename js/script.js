@@ -5,6 +5,8 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
+var annotationContainer = document.getElementById('annotation');
+
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     videoId: '8oRRZiRQxTs',
@@ -18,15 +20,37 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
   event.target.playVideo();
+  annotationContainer.style.display = 'none'; // Hide initially
 }
 
-var done = false;
+const annotationTimestamp = 14; // Replace with the desired timestamp in seconds
+let currentTime = 0;
+
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
+    currentTime = Math.round(player.getCurrentTime()); // Round to nearest second
+    if (event.data == YT.PlayerState.PLAYING) {
+      // Update timestamp in one-second increments while playing
+      intervalID = setInterval(updateTimestamp, 1000);
+    } else {
+      // Check timestamp on other state changes
+      clearInterval(intervalID);
+      checkAndUpdateTimestamp();
+    }
   }
-}
-function stopVideo() {
-  player.stopVideo();
+  
+  function checkAndUpdateTimestamp() {
+      annotationContainer.style.display = 'block'; // Show annotation
+      updateTimestamp();
+  }
+  
+  function updateTimestamp() {
+    currentTime += 1;
+    const currentTimeParagraph = annotationContainer.querySelector('p');
+    currentTimeParagraph.textContent = `Current Timestamp: ${currentTime} seconds`;
+  }
+  
+  
+
+function hideAnnotation() {
+  annotationContainer.style.display = 'none';
 }
