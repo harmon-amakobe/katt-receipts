@@ -1,0 +1,44 @@
+/* Add any custom styling for the player here */
+
+header {
+    display: flex; /* Arrange elements horizontally */
+    align-items: center; /* Vertically center elements */
+    height: 56px;
+  }
+  
+  header img {
+    max-width: 70px; /* Set maximum width for logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 14px; /* Add spacing between logo and title */
+  }
+  
+  header h1 {
+    font-family: 'Gluten', sans-serif;
+    font-size: 42px;
+  }
+  
+  #player {
+    width: 100%; /* Take full width of container */
+    margin: 20px auto;
+    border: 1px solid #ccc;
+  }
+
+  #player iframe {
+    position: absolute; /* Align with parent container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    header {
+      flex-wrap: wrap; /* Allow elements to wrap onto multiple lines */
+    }
+  
+    header img {
+      margin-bottom: 10px; /* Add spacing below logo on smaller screens */
+    }
+  }
+  
