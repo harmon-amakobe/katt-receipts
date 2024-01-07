@@ -928,38 +928,51 @@ body {
 
 /* Wrapper */
 
-	#wrapper {
-		-moz-transition: -moz-filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
-		-webkit-transition: -webkit-filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
-		-ms-transition: -ms-filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
-		transition: filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
-		padding-top: 3.25em;
-	}
+#wrapper {
+    -moz-transition: -moz-filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
+    -webkit-transition: -webkit-filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
+    -ms-transition: -ms-filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
+    transition: filter 0.35s ease, -webkit-filter 0.35s ease, opacity 0.375s ease-out;
+    padding-top: 3.25em;
+    display: flex; /* Add flex display for children alignment */
+}
 
-	#wrapper.is-transitioning {
-		opacity: 0;
-	}
+#wrapper.is-transitioning {
+    opacity: 0;
+}
 
-	#wrapper > * > .inner {
-		padding: 4em 0 2em 0 ;
-		margin: 0 auto;
-		max-width: 65em;
-		width: calc(100% - 6em);
-	}
+#wrapper > * > .inner {
+    padding: 4em 0 2em 0 ;
+    margin: 0 auto;
+    max-width: 65em;
+    width: calc(100% - 6em);
+}
 
-	@media screen and (max-width: 736px) {
+@media screen and (max-width: 736px) {
+    #wrapper > * > .inner {
+        padding: 3em 0 1em 0 ;
+        width: calc(100% - 3em);
+    }
 
-		#wrapper > * > .inner {
-			padding: 3em 0 1em 0 ;
-			width: calc(100% - 3em);
-		}
+    #wrapper {
+        padding-top: 2.75em;
+        flex-direction: column; /* Change to column layout for small screens */
+    }
+}
 
-	}
+/* Add styles for screens wider than 736px */
+@media screen and (min-width: 737px) {
+    #wrapper > section#banner,
+    #wrapper > div#main {
+        width: 50%; /* Set both banner and main to take up 50% of the width */
+        box-sizing: border-box;
+        float: left;
+    }
+}
 
-	@media screen and (max-width: 736px) {
-
-		#wrapper {
-			padding-top: 2.75em;
-		}
-
-	}
+/* Clearfix for the floated elements */
+#wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+}
