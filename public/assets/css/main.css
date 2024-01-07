@@ -584,7 +584,7 @@ body {
 		background-size: cover;
 		border-bottom: 0 !important;
 		cursor: default;
-		height: 60vh;
+		height: vh;
 		margin-bottom: -3.25em;
 		max-height: 32em;
 		min-height: 22em;
