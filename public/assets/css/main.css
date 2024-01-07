@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 
 .video {
 	aspect-ratio: 16 / 9;
+	height: 100%;
 	width: 100%;
 	}
 
@@ -584,7 +585,7 @@ body {
 		background-size: cover;
 		border-bottom: 0 !important;
 		cursor: default;
-		height: vh;
+		height: 60vh;
 		margin-bottom: -3.25em;
 		max-height: 32em;
 		min-height: 22em;
